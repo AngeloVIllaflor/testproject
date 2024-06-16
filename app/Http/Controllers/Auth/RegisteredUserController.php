@@ -51,45 +51,27 @@ class RegisteredUserController extends Controller
             'email' => 'string|lowercase|email'
         ]);
 
-        $purposeId = str::uuid();
         $user = User::create([
-            // 'name' => $request->name,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'phone_number' => $request->phone_number,
-            'purpose_id' => $purposeId,
             'email' => $request->email,
             'visit_status' => 'No',
             'password' => bcrypt(Str::random(8))
-            // 'password' => Hash::make($request->password),
         ]);
 
-        $departmentEmails = [];
-        $departmentName = [];
-        $departmentId = [];
         $purposes = $request->input('purposes', []);
-        foreach ($purposes as $purpose) {
-            $department = Department::where('id', $purpose)->first();
-            Purpose::create([
-                'id' => $purposeId,
-                'description' => $department->name,
-                'department_id' => $department->id,
-                'department_status' => 'No']);
+        $user->purposes()->sync($request->input('purposes', []));
 
-                $departmentEmails[] = $department->email;
-                $departmentName[] = $department->purpose;
-                $departmentId[] = $department->id;
-        }
-
-        logger()->info('emails', [$departmentEmails]);
+        logger()->info('emails', $user->purposes->pluck('email')->toArray());
         event(new Registered($user));
 
         logger()->info('purposes', [$purposes]);
         Auth::login($user);
 
         // Send welcome email
-        foreach ($departmentEmails as $index => $email) {
-            Mail::to($email)->send(new StaffEmailNotification($user, $departmentName[$index], $departmentId[$index], $purposeId));
+        foreach ($user->purposes as $purpose) {
+            Mail::to($purpose->email)->send(new StaffEmailNotification($user, $purpose->name, $purpose->id));
         }
 
         return redirect(route('dashboard', absolute: false));
