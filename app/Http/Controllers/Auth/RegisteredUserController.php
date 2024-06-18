@@ -61,7 +61,9 @@ class RegisteredUserController extends Controller
         ]);
 
         $purposes = $request->input('purposes', []);
-        $user->purposes()->sync($request->input('purposes', []));
+        $user->purposes()->syncWithPivotValues($request->input('purposes', []), [
+            'status' => 'On Going'
+        ]);
 
         logger()->info('emails', $user->purposes->pluck('email')->toArray());
         event(new Registered($user));

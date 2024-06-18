@@ -25,7 +25,8 @@ class User extends Authenticatable
         'purpose_id',
         'email',
         'password',
-        'visit_status'
+        'visit_status',
+        'logout_time'
     ];
 
     /**

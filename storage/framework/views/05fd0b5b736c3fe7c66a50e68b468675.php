@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,11 +53,12 @@
     <img src="https://vega.apc.edu.ph/logo/nu-apc-cons-logo.png" width="200px" alt="apc logo">
     <br>
     <div class='content'>
-        <p>{{ $user->first_name }} {{ $user->last_name}}</p>
+        <p><?php echo e($user->first_name); ?> <?php echo e($user->last_name); ?></p>
         <p> will be arriving at your office.</p>
         <p>Please be prepared and have a nice day!</p>
     </div>
 
-    <a href="{{ url('update-purpose/' . $user->id . '/' . 'department/' . $departmentId) }}" class="btn-clear">Clear</a>
+    <a href="<?php echo e(url('update-purpose/' . $user->id . '/' . 'department/' . $departmentId)); ?>" class="btn-clear">Clear</a>
 </body>
 </html>
+<?php /**PATH /Users/danielmauricio/testproject/resources/views/emails/staff-email-notification.blade.php ENDPATH**/ ?>

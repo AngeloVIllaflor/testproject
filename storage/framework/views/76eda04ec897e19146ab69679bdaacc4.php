@@ -103,34 +103,34 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($users as $user)
-                        @foreach ($user->purposes as $purpose)
+                    <?php $__empty_1 = true; $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        <?php $__currentLoopData = $user->purposes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $purpose): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <td>{{$user->id}}</td>
-                                <td>{{$user->first_name}} {{$user->last_name}}</td>
-                                <td>{{$purpose->purpose}}</td>
-                                <td>{{$purpose->name}}</td>
-                                <td>{{$purpose->pivot->status != 'On Going' ? 'Done (' . $purpose->pivot->finished_at . ')' : 'On Going'}}</td>
-                                <td>{{$user->created_at}}</td>
-                                <td>{{$user->logout_time}}</td>
+                                <td><?php echo e($user->id); ?></td>
+                                <td><?php echo e($user->first_name); ?> <?php echo e($user->last_name); ?></td>
+                                <td><?php echo e($purpose->purpose); ?></td>
+                                <td><?php echo e($purpose->name); ?></td>
+                                <td><?php echo e($purpose->pivot->status != 'On Going' ? 'Done (' . $purpose->pivot->finished_at . ')' : 'On Going'); ?></td>
+                                <td><?php echo e($user->created_at); ?></td>
+                                <td><?php echo e($user->logout_time); ?></td>
                         
-                                @if ($loop->last)
+                                <?php if($loop->last): ?>
                                     <td>
-                                        <form action="{{ route('logout.user', $user->id) }}" method="GET">
-                                            @csrf
+                                        <form action="<?php echo e(route('logout.user', $user->id)); ?>" method="GET">
+                                            <?php echo csrf_field(); ?>
                                             <button type="submit" class="logout-btn">Logout</button>
                                         </form>
                                     </td>
-                                @else
+                                <?php else: ?>
                                     <td></td>
-                                @endif
+                                <?php endif; ?>
                             </tr>
-                        @endforeach
-                    @empty
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         
-                    @endforelse
+                    <?php endif; ?>
                 </tbody>
             </table>
         </body>
         </html>
-        
+        <?php /**PATH /Users/danielmauricio/testproject/resources/views/guard/dashboard.blade.php ENDPATH**/ ?>

@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,12 +85,12 @@
 <body>
     <div class="container-fluid">
         <div class="qr-section">
-            <img src="{{ asset('mobileQR.png') }}" alt="Mobile QR" class="img-fluid mobile-qr">
+            <img src="<?php echo e(asset('mobileQR.png')); ?>" alt="Mobile QR" class="img-fluid mobile-qr">
             <p class="touchless-check-in">TOUCHLESS CHECK-IN<br>Use your smartphone to scan QR code</p>
-            <img src="{{ asset('qr.png') }}" alt="QR Code" class="img-fluid">
+            <img src="<?php echo e(asset('qr.png')); ?>" alt="QR Code" class="img-fluid">
         </div>
         <div class="welcome-section">
-            <img src="{{ asset('logo2.png') }}" alt="College Logo" class="logo mb-4">
+            <img src="<?php echo e(asset('logo2.png')); ?>" alt="College Logo" class="logo mb-4">
             <h1>Welcome!</h1>
             <p>Please take a moment to sign in or out below</p>
             <div class="button-container">
@@ -208,21 +208,22 @@
         function acceptPrivacy() {
             const url = new URL(window.location);
             if (url.pathname === '/register') {
-                window.location.href = '{{ route('register') }}';
+                window.location.href = '<?php echo e(route('register')); ?>';
             } else if (url.pathname === '/login') {
-                window.location.href = '{{ route('login') }}';
+                window.location.href = '<?php echo e(route('login')); ?>';
             }
         }
         document.querySelectorAll('.button-style').forEach(button => {
             button.addEventListener('click', function() {
                 const acceptButton = document.querySelector('#privacyModal .btn-primary');
                 if (this.textContent.includes('GET STARTED')) {
-                    acceptButton.onclick = function() { window.location.href = '{{ route('register') }}'; };
+                    acceptButton.onclick = function() { window.location.href = '<?php echo e(route('register')); ?>'; };
                 } else {
-                    acceptButton.onclick = function() { window.location.href = '{{ route('login') }}'; };
+                    acceptButton.onclick = function() { window.location.href = '<?php echo e(route('login')); ?>'; };
                 }
             });
         });
     </script>
 </body>
 </html>
+<?php /**PATH /Users/danielmauricio/testproject/resources/views/welcome.blade.php ENDPATH**/ ?>
