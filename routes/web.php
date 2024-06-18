@@ -50,6 +50,7 @@
     Route::get('/download-csv', [AdminController::class, 'download'])->name('admin.download');
     Route::get('/api/visitors', [AdminController::class, 'apiVisitors'])->name('admin.api.visitors');
     Route::get('/api/reports/line', [AdminController::class, 'apiLineChart'])->name('admin.api.linechart');
+    Route::get('/api/reports/pie', [AdminController::class, 'apiPieChart'])->name('admin.api.piechart');
 
     Route::get('/logout-user/{user}', function (User $user) { 
         $user->update(['logout_time' => Carbon::now()]);

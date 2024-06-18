@@ -1,7 +1,7 @@
-@extends('layouts.admin')
 
-@push('css')
-    <link href="{{ asset('plugins/switchery/switchery.css') }}" type="text/css" rel="stylesheet"> <!-- Switchery -->
+
+<?php $__env->startPush('css'); ?>
+    <link href="<?php echo e(asset('plugins/switchery/switchery.css')); ?>" type="text/css" rel="stylesheet"> <!-- Switchery -->
     <link href="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
     <style>
         .datepicker {
@@ -26,9 +26,9 @@
             cursor: pointer !important;
         }
     </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="page-heading">
         <h1><i class="fa fa-home"></i> Dashboard</h1>
     </div>
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="tiles-body">
-                            <div class="text-center">{{ $TotalTodayVisitors }}</div>
+                            <div class="text-center"><?php echo e($TotalTodayVisitors); ?></div>
                         </div>
                         <div class="tiles-footer">
                         </div>
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="tiles-body">
-                            <div class="text-center">{{ $ActiveVisitors }}</div>
+                            <div class="text-center"><?php echo e($ActiveVisitors); ?></div>
                         </div>
                         <div class="tiles-footer">
                         </div>
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         <div class="tiles-body">
-                            <div class="text-center">{{ $ClearedVisitors }}</div>
+                            <div class="text-center"><?php echo e($ClearedVisitors); ?></div>
                         </div>
                         <div class="tiles-footer">
                         </div>
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                         <div class="tiles-body">
-                            <div class="text-center">{{ $Last7DaysVisitors }}</div>
+                            <div class="text-center"><?php echo e($Last7DaysVisitors); ?></div>
                         </div>
                         <div class="tiles-footer">
                         </div>
@@ -157,25 +157,25 @@
             </div>
         </div>
     </div> <!-- .container-fluid -->
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('scripts')
-    <script src="{{ asset('plugins/form-daterangepicker/daterangepicker.js') }}"></script> <!-- Date Range Picker -->
-	<script src="{{ asset('plugins/form-daterangepicker/moment.min.js') }}"></script> <!-- Moment.js for Date Range Picker -->
-	<script src="{{ asset('plugins/switchery/switchery.js') }}"></script> <!-- Switchery -->
+<?php $__env->startPush('scripts'); ?>
+    <script src="<?php echo e(asset('plugins/form-daterangepicker/daterangepicker.js')); ?>"></script> <!-- Date Range Picker -->
+	<script src="<?php echo e(asset('plugins/form-daterangepicker/moment.min.js')); ?>"></script> <!-- Moment.js for Date Range Picker -->
+	<script src="<?php echo e(asset('plugins/switchery/switchery.js')); ?>"></script> <!-- Switchery -->
 	<!-- Charts -->
-	<script src="{{ asset('plugins/charts-flot/jquery.flot.min.js') }}"></script> <!-- Flot Main File -->
-	<script src="{{ asset('plugins/charts-flot/jquery.flot.stack.min.js') }}"></script> <!-- Flot Stacked Charts Plugin -->
-	<script src="{{ asset('plugins/charts-flot/jquery.flot.orderBars.min.js') }}"></script> <!-- Flot Ordered Bars Plugin-->
-    <script src="{{ asset('plugins/charts-flot/jquery.flot.pie.min.js') }}"></script> <!-- Flot Pie Plugin-->
-	<script src="{{ asset('plugins/charts-flot/jquery.flot.resize.min.js') }}"></script> <!-- Flot Responsive -->
-	<script src="{{ asset('plugins/charts-flot/jquery.flot.tooltip.min.js') }}"></script> <!-- Flot Tooltips -->
+	<script src="<?php echo e(asset('plugins/charts-flot/jquery.flot.min.js')); ?>"></script> <!-- Flot Main File -->
+	<script src="<?php echo e(asset('plugins/charts-flot/jquery.flot.stack.min.js')); ?>"></script> <!-- Flot Stacked Charts Plugin -->
+	<script src="<?php echo e(asset('plugins/charts-flot/jquery.flot.orderBars.min.js')); ?>"></script> <!-- Flot Ordered Bars Plugin-->
+    <script src="<?php echo e(asset('plugins/charts-flot/jquery.flot.pie.min.js')); ?>"></script> <!-- Flot Pie Plugin-->
+	<script src="<?php echo e(asset('plugins/charts-flot/jquery.flot.resize.min.js')); ?>"></script> <!-- Flot Responsive -->
+	<script src="<?php echo e(asset('plugins/charts-flot/jquery.flot.tooltip.min.js')); ?>"></script> <!-- Flot Tooltips -->
 	<!-- Maps -->
-	<script src="{{ asset('plugins/jQuery-Mapael/js/raphael/raphael-min.js') }}"></script> <!-- Load Raphael as Dependency -->
-	<script src="{{ asset('plugins/jQuery-Mapael/js/jquery.mapael.js') }}"></script> <!-- jQuery Mapael -->
-	<script src="{{ asset('plugins/jquery-mousewheel/jquery.mousewheel.min.js') }}"></script> <!-- MouseWheel Support -->
-	<script src="{{ asset('plugins/jQuery-Mapael/js/maps/world_countries.js') }}"></script>
-	<script src="{{ asset('plugins/jQuery-Mapael/js/maps/usa_states.js') }}"></script> <!-- Vector Data of USA States -->
+	<script src="<?php echo e(asset('plugins/jQuery-Mapael/js/raphael/raphael-min.js')); ?>"></script> <!-- Load Raphael as Dependency -->
+	<script src="<?php echo e(asset('plugins/jQuery-Mapael/js/jquery.mapael.js')); ?>"></script> <!-- jQuery Mapael -->
+	<script src="<?php echo e(asset('plugins/jquery-mousewheel/jquery.mousewheel.min.js')); ?>"></script> <!-- MouseWheel Support -->
+	<script src="<?php echo e(asset('plugins/jQuery-Mapael/js/maps/world_countries.js')); ?>"></script>
+	<script src="<?php echo e(asset('plugins/jQuery-Mapael/js/maps/usa_states.js')); ?>"></script> <!-- Vector Data of USA States -->
     <!-- Bootstrap Datepicker -->
     <script src="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script>
@@ -344,6 +344,7 @@
                     });
 
                     function pieClick(event, pos, obj) {
+                        console.log(obj);
                         alert(`${obj.series.label}: ${obj.series.percent.toFixed(2)}%`);
                     }
                     $("#visitors-dept-stats").bind("plotclick", pieClick);
@@ -354,4 +355,6 @@
             });
         });
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Documents\Anloo\testproject\resources\views/admin/dashboard.blade.php ENDPATH**/ ?>

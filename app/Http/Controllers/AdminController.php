@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use DB;
-use App\Models\User;
+use App\Models\{
+    Department,
+    User
+};
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -163,12 +166,28 @@ class AdminController extends Controller
                 ])
                 ->orderBy('created_at')
                 ->get();
-            
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 422);
         }
 
         return $visitorPerDayCounts;
+    }
+
+    public function apiPieChart()
+    {
+        try {
+            $departmentCount = Department::groupBy('purpose')
+                ->select([
+                    DB::raw('purpose AS department'),
+                    DB::raw('COUNT(*) AS total')
+                ])
+                ->orderBy('department')
+                ->get();
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 422);
+        }
+
+        return $departmentCount;
     }
 
     public function download()
