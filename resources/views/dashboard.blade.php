@@ -35,10 +35,10 @@
     </form>
 
 <script>
-        // Auto logout after 5 seconds
-        setTimeout(function() {
-            document.getElementById('logout-form').submit();
-        }, 4000); // 5000 milliseconds = 5 seconds
+    // Auto logout after 5 seconds
+    setTimeout(function() {
+        document.getElementById('logout-form').submit();
+    }, 4000); // 5000 milliseconds = 5 seconds
 </script>
 
 </x-app-layout>
