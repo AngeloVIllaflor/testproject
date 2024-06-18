@@ -12,7 +12,7 @@
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
     'cipher' => 'AES-256-CBC',
-    'key' => 'base64:0CMjUFYRaxC87mnJYf39BKTBF7NVRrI/JMLnov0B9qw=',
+    'key' => 'base64:LkAsACZ+C21qrgC8EIdEw4yTNQE+2DqMThJ2qs/3GLk=',
     'previous_keys' => 
     array (
     ),
@@ -149,8 +149,8 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'D:\\Documents\\Anloo\\testproject\\storage\\framework/cache/data',
-        'lock_path' => 'D:\\Documents\\Anloo\\testproject\\storage\\framework/cache/data',
+        'path' => '/Users/danielmauricio/testproject/storage/framework/cache/data',
+        'lock_path' => '/Users/danielmauricio/testproject/storage/framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -213,11 +213,11 @@
       array (
         'driver' => 'mysql',
         'url' => NULL,
-        'host' => 'localhost',
+        'host' => '127.0.0.1',
         'port' => '3306',
         'database' => 'testproject',
         'username' => 'root',
-        'password' => 'Jp@m1tt@n_123',
+        'password' => '',
         'unix_socket' => '',
         'charset' => 'utf8mb4',
         'collation' => 'utf8mb4_unicode_ci',
@@ -234,11 +234,11 @@
       array (
         'driver' => 'mariadb',
         'url' => NULL,
-        'host' => 'localhost',
+        'host' => '127.0.0.1',
         'port' => '3306',
         'database' => 'testproject',
         'username' => 'root',
-        'password' => 'Jp@m1tt@n_123',
+        'password' => '',
         'unix_socket' => '',
         'charset' => 'utf8mb4',
         'collation' => 'utf8mb4_unicode_ci',
@@ -254,11 +254,11 @@
       array (
         'driver' => 'pgsql',
         'url' => NULL,
-        'host' => 'localhost',
+        'host' => '127.0.0.1',
         'port' => '3306',
         'database' => 'testproject',
         'username' => 'root',
-        'password' => 'Jp@m1tt@n_123',
+        'password' => '',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -269,11 +269,11 @@
       array (
         'driver' => 'sqlsrv',
         'url' => NULL,
-        'host' => 'localhost',
+        'host' => '127.0.0.1',
         'port' => '3306',
         'database' => 'testproject',
         'username' => 'root',
-        'password' => 'Jp@m1tt@n_123',
+        'password' => '',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -295,7 +295,7 @@
       'default' => 
       array (
         'url' => NULL,
-        'host' => 'redis',
+        'host' => '127.0.0.1',
         'username' => NULL,
         'password' => NULL,
         'port' => '6379',
@@ -304,7 +304,7 @@
       'cache' => 
       array (
         'url' => NULL,
-        'host' => 'redis',
+        'host' => '127.0.0.1',
         'username' => NULL,
         'password' => NULL,
         'port' => '6379',
@@ -320,13 +320,13 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'D:\\Documents\\Anloo\\testproject\\storage\\app',
+        'root' => '/Users/danielmauricio/testproject/storage/app',
         'throw' => false,
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'D:\\Documents\\Anloo\\testproject\\storage\\app/public',
+        'root' => '/Users/danielmauricio/testproject/storage/app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
         'throw' => false,
@@ -346,7 +346,7 @@
     ),
     'links' => 
     array (
-      'D:\\Documents\\Anloo\\testproject\\public\\storage' => 'D:\\Documents\\Anloo\\testproject\\storage\\app/public',
+      '/Users/danielmauricio/testproject/public/storage' => '/Users/danielmauricio/testproject/storage/app/public',
     ),
   ),
   'logging' => 
@@ -371,14 +371,14 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'D:\\Documents\\Anloo\\testproject\\storage\\logs/laravel.log',
+        'path' => '/Users/danielmauricio/testproject/storage/logs/laravel.log',
         'level' => 'debug',
         'replace_placeholders' => true,
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'D:\\Documents\\Anloo\\testproject\\storage\\logs/laravel.log',
+        'path' => '/Users/danielmauricio/testproject/storage/logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
         'replace_placeholders' => true,
@@ -443,7 +443,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'D:\\Documents\\Anloo\\testproject\\storage\\logs/laravel.log',
+        'path' => '/Users/danielmauricio/testproject/storage/logs/laravel.log',
       ),
     ),
   ),
@@ -455,11 +455,11 @@
       'smtp' => 
       array (
         'transport' => 'smtp',
-        'host' => 'mailpit',
-        'port' => '1025',
+        'host' => 'sandbox.smtp.mailtrap.io',
+        'port' => '2525',
         'encryption' => NULL,
-        'username' => NULL,
-        'password' => NULL,
+        'username' => '9d86b785c5869c',
+        'password' => '84eb01d4fdae34',
         'timeout' => NULL,
       ),
       'ses' => 
@@ -509,15 +509,15 @@
     ),
     'from' => 
     array (
-      'address' => 'hello@example.com',
-      'name' => 'Laravel',
+      'address' => 'danielmauricio1413@gmail.com',
+      'name' => 'Visitor Registration System',
     ),
     'markdown' => 
     array (
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'D:\\Documents\\Anloo\\testproject\\resources\\views/vendor/mail',
+        0 => '/Users/danielmauricio/testproject/resources/views/vendor/mail',
       ),
     ),
   ),
@@ -612,7 +612,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'D:\\Documents\\Anloo\\testproject\\storage\\framework/sessions',
+    'files' => '/Users/danielmauricio/testproject/storage/framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -628,6 +628,23 @@
     'http_only' => true,
     'same_site' => 'lax',
     'partitioned' => false,
+  ),
+  'hashing' => 
+  array (
+    'driver' => 'bcrypt',
+    'bcrypt' => 
+    array (
+      'rounds' => '12',
+      'verify' => true,
+    ),
+    'argon' => 
+    array (
+      'memory' => 65536,
+      'threads' => 1,
+      'time' => 4,
+      'verify' => true,
+    ),
+    'rehash_on_login' => true,
   ),
   'broadcasting' => 
   array (
@@ -685,6 +702,14 @@
       ),
     ),
   ),
+  'view' => 
+  array (
+    'paths' => 
+    array (
+      0 => '/Users/danielmauricio/testproject/resources/views',
+    ),
+    'compiled' => '/Users/danielmauricio/testproject/storage/framework/views',
+  ),
   'cors' => 
   array (
     'paths' => 
@@ -712,31 +737,6 @@
     ),
     'max_age' => 0,
     'supports_credentials' => false,
-  ),
-  'hashing' => 
-  array (
-    'driver' => 'bcrypt',
-    'bcrypt' => 
-    array (
-      'rounds' => '12',
-      'verify' => true,
-    ),
-    'argon' => 
-    array (
-      'memory' => 65536,
-      'threads' => 1,
-      'time' => 4,
-      'verify' => true,
-    ),
-    'rehash_on_login' => true,
-  ),
-  'view' => 
-  array (
-    'paths' => 
-    array (
-      0 => 'D:\\Documents\\Anloo\\testproject\\resources\\views',
-    ),
-    'compiled' => 'D:\\Documents\\Anloo\\testproject\\storage\\framework\\views',
   ),
   'flare' => 
   array (
@@ -822,7 +822,7 @@
     array (
     ),
     'enable_runnable_solutions' => NULL,
-    'remote_sites_path' => 'D:\\Documents\\Anloo\\testproject',
+    'remote_sites_path' => '/Users/danielmauricio/testproject',
     'local_sites_path' => '',
     'housekeeping_endpoint_prefix' => '_ignition',
     'settings_file_path' => '',

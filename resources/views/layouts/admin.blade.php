@@ -53,9 +53,14 @@
                                 <span class="widget-heading">Menu</span>
                                 <nav role="navigation" class="widget-body">
                                     <ul class="acc-menu">
-                                        <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-home"></i><span>Dashboard</span></a></li>
-                                        <li><a href="{{ route('admin.admin') }}"><i class="fa fa-briefcase"></i><span>Visitors</span></a></li>
-                                        <li><a href="{{ route('admin.guard') }}"><i class="fas fa-file-alt"></i><span>Events</span></a></li>
+                                        @if(auth()->user()->role == 'admin')
+                                            <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-home"></i><span>Dashboard</span></a></li>
+                                            <li><a href="{{ route('admin.admin') }}"><i class="fa fa-briefcase"></i><span>Visitor Log</span></a></li>
+                                            <li><a href="{{ route('admin.admin') }}"><i class="fas fa-file-alt"></i><span>Events</span></a></li>
+                                        @else
+                                            <li><a href="{{ route('admin.guard') }}"><i class="fas fa-file-alt"></i><span>Visitor Log</span></a></li>
+                                            <li><a href="{{ route('admin.guard') }}"><i class="fas fa-file-alt"></i><span>Events</span></a></li>
+                                        @endif
                                     </ul>
                                 </nav>
                             </div>

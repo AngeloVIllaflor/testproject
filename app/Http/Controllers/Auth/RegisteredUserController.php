@@ -56,7 +56,6 @@ class RegisteredUserController extends Controller
             'last_name' => $request->last_name,
             'phone_number' => $request->phone_number,
             'email' => $request->email,
-            'visit_status' => 'No',
             'password' => bcrypt(Str::random(8))
         ]);
 

@@ -26,13 +26,13 @@
                                         <th>Visitor ID</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
-                                        <th>Phone Number</th>
                                         <th>Department</th>
                                         <th>Purpose</th>
                                         <th>Purpose Status</th>
                                         <th>Finished At</th>
                                         <th>Time In</th>
                                         <th>Logout Time</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -56,11 +56,15 @@
                     { data: 'id', name: 'id' },
                     { data: 'first_name', name: 'first_name' },
                     { data: 'last_name', name: 'last_name' },
-                    { data: 'phone_number', name: 'phone_number' },
                     { data: 'purpose_name', name: 'purpose' },
                     { data: 'purpose_purpose', name: 'name' },
                     { data: 'purpose_status', name: 'status' },
-                    { data: 'purpose_finsihed_at', name: 'finsihed_at' },
+                    { data: 'purpose_finished_at', name: 'finihed_at', render: function (data, type, row) {
+                        if (row.purpose_finished_at) {
+                            return moment(row.purpose_finished_at).format('MM/DD/YYYY hh:mm A');
+                        }
+                        return '';
+                    }},
                     {
                         data: 'created_at',
                         name: 'created_at',
@@ -81,8 +85,15 @@
                             return data;
                         }
                     },
+                    {
+                        data: 'actions',
+                        name: 'actions',
+                        render: function (data, type, row) {
+                            return '<a href="/logout-user/' + row.id + '">Logout</a>';
+                        }
+                    }
                 ];
-            $('#visitors').dataTable({
+            var table = $('#visitors').dataTable({
                 language: {
                     lengthMenu: "_MENU_",
                     searchPlaceholder: "Search..."
@@ -103,6 +114,10 @@
             $('.panel-ctrls').append($('.dataTables_length').addClass("pull-left")).find("label").addClass("panel-ctrls-center");
             $('.panel-footer').append($(".dataTable+.row"));
             $('.dataTables_paginate>ul.pagination').addClass("pull-right m0");
+
+            setInterval(() => {
+               table.api().ajax.reload();
+            }, 5000);
         });
     </script>
 @endpush

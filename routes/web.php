@@ -12,7 +12,7 @@
 
     Route::get('/', function () {
         return view('welcome');
-    });
+    })->name('home');
 
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -44,18 +44,24 @@
         return redirect()->route('update.success')->with(['message' => 'Update successful', 'fullname' => $user->first_name]);
     });
 
-    Route::get('/admin-dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('/admin', [AdminController::class, 'admin'])->name('admin.admin');
-    Route::get('/guard', [AdminController::class, 'guard'])->name('admin.guard');
-    Route::get('/download-csv', [AdminController::class, 'download'])->name('admin.download');
-    Route::get('/api/visitors', [AdminController::class, 'apiVisitors'])->name('admin.api.visitors');
-    Route::get('/api/reports/line', [AdminController::class, 'apiLineChart'])->name('admin.api.linechart');
-    Route::get('/api/reports/pie', [AdminController::class, 'apiPieChart'])->name('admin.api.piechart');
+    Route::get('/admin-dashboard', [AdminController::class, 'dashboard'])->middleware('auth')->name('admin.dashboard');
+    Route::get('/admin', [AdminController::class, 'admin'])->middleware('auth')->name('admin.admin');
+    Route::get('/guard', [AdminController::class, 'guard'])->middleware('auth')->name('admin.guard');
+    Route::get('/download-csv', [AdminController::class, 'download'])->middleware('auth')->name('admin.download');
+    Route::get('/api/visitors', [AdminController::class, 'apiVisitors'])->middleware('auth')->name('admin.api.visitors');
+    Route::get('/api/reports/line', [AdminController::class, 'apiLineChart'])->middleware('auth')->name('admin.api.linechart');
+    Route::get('/api/reports/pie', [AdminController::class, 'apiPieChart'])->middleware('auth')->name('admin.api.piechart');
 
     Route::get('/logout-user/{user}', function (User $user) { 
         $user->update(['logout_time' => Carbon::now()]);
 
         return redirect('/guard');
     })->name('logout.user');
+
+    Route::get('logouttt', function(){
+        auth()->logout();
+
+        return redirect('/login');
+    });
 
     require __DIR__ . '/auth.php';

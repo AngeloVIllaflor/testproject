@@ -15,18 +15,19 @@ class AdminController extends Controller
     public function dashboard()
     {
         $TotalTodayVisitors = User::where('created_at', '>=', date('Y-m-d 00:00:00'))
+            ->whereNotIn('id', [1,2])
             ->count();
-        $ActiveVisitors = User::leftJoin('department_user_table', function($join) {
-                $join->on('department_user_table.user_id', '=', 'users.id');
-            })
-            ->whereNull('finished_at')
+        $ActiveVisitors = User::whereNull('logout_time')
+            ->whereNotIn('id', [1,2])
             ->count();
-        $ClearedVisitors = User::leftJoin('department_user_table', function($join) {
-                $join->on('department_user_table.user_id', '=', 'users.id');
-            })
-            ->whereNotNull('finished_at')
+
+        $ClearedVisitors = User::whereDoesntHave('purposes', function($query){
+            $query->whereNull('department_user_table.finished_at');
+        })
+            ->whereNotIn('id', [1,2])
             ->count();
         $Last7DaysVisitors = User::where('created_at', '>=', Carbon::now()->subDays(7))
+            ->whereNotIn('id', [1,2])
             ->count();
 
         return view(
@@ -42,7 +43,7 @@ class AdminController extends Controller
 
     public function admin()
     {
-        return view('admin.visitor');
+        return view('admin.admin');
     }
 
     public function guard()
@@ -71,7 +72,7 @@ class AdminController extends Controller
             ->leftJoin('departments', function($join) {
                 $join->on('department_user_table.department_id', '=', 'departments.id');
             });
-        if ($searchValue) {
+       if ($searchValue) {
             $queryTotalRecordswithFilter->where('users.first_name', 'like', '%' . $searchValue . '%')
                 ->orWhere('users.last_name', 'like', '%' . $searchValue . '%')
                 ->orWhere('department_user_table.status', 'like', '%' . $searchValue . '%')
@@ -87,7 +88,7 @@ class AdminController extends Controller
             $columnName = 'users.' . $columnName;
         }
 
-        $queryRecords = User::leftJoin('department_user_table', function($join) {
+        $queryRecords = User::select('users.*', 'departments.purpose', 'departments.name', 'department_user_table.status', 'department_user_table.finished_at')->leftJoin('department_user_table', function($join) {
                 $join->on('department_user_table.user_id', '=', 'users.id');
             })
             ->leftJoin('departments', function($join) {
@@ -104,7 +105,7 @@ class AdminController extends Controller
                 ->orWhere('departments.purpose', 'like', '%' . $searchValue . '%')
                 ->orWhere('departments.description', 'like', '%' . $searchValue . '%');
         }
-        $users = $queryRecords->get();
+        $users = $queryRecords->whereNotIn('users.id', [1,2])->get();
 
         foreach($users as $user) {
             $data_arr[] = [ 
@@ -115,7 +116,7 @@ class AdminController extends Controller
                 'purpose_name' => $user->name,
                 'purpose_purpose' => $user->purpose,
                 'purpose_status' => $user->status,
-                'purpose_finsihed_at' => $user->finsihed_at,
+                'purpose_finished_at' => $user->finished_at,
                 'created_at' => $user->created_at,
                 'logout_time' => $user->logout_time,
             ];

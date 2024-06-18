@@ -31,7 +31,26 @@ class AuthenticatedSessionController extends Controller
 
         $purposes = Department::all();
 
-        return redirect()->intended(route('dashboard', ['purposes' => $purposes]));
+        return redirect()->intended($this->intendedRoute());
+    }
+
+    private function intendedRoute() {
+        $route = route('dashboard');
+        switch (auth()->user()->role) {
+            case 'admin':
+                $route = route('admin.dashboard');
+                break;
+
+            case 'guard':
+                $route = route('admin.guard');
+                break;
+            
+            default:
+                $route = route('dashboard');
+                break;
+        }
+
+        return $route;
     }
 
     /**
