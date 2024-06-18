@@ -37,18 +37,12 @@
         </div>
     </div>
 
-    
-
-    <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
-        <?php echo csrf_field(); ?>
-    </form>
-
-<script>
-        // Auto logout after 5 seconds
-        setTimeout(function() {
-            document.getElementById('logout-form').submit();
-        }, 4000); // 5000 milliseconds = 5 seconds
-</script>
+    <script>
+            // Auto logout after 5 seconds
+            setTimeout(function() {
+                document.location.href = "/";
+            }, 4000); // 5000 milliseconds = 5 seconds
+    </script>
 
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>

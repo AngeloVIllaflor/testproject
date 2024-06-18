@@ -58,7 +58,7 @@
         <p>Please be prepared and have a nice day!</p>
     </div>
 
-    <a href="<?php echo e(url('/api/update-purpose/' . $user->id . '/' . 'department/' . $departmentId)); ?>" class="btn-clear">Clear</a>
+    <a href="<?php echo e(url('update-purpose/' . $user->id . '/' . 'department/' . $departmentId)); ?>" class="btn-clear">Clear</a>
 </body>
 </html>
 <?php /**PATH D:\wamp\www\testproject\resources\views/emails/staff-email-notification.blade.php ENDPATH**/ ?>

@@ -28,18 +28,12 @@
         </div>
     </div>
 
-    {{-- Noli me tangere --}}
-
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form>
-
-<script>
-        // Auto logout after 5 seconds
-        setTimeout(function() {
-            document.getElementById('logout-form').submit();
-        }, 4000); // 5000 milliseconds = 5 seconds
-</script>
+    <script>
+            // Auto logout after 5 seconds
+            setTimeout(function() {
+                document.location.href = "/";
+            }, 4000); // 5000 milliseconds = 5 seconds
+    </script>
 
 </x-app-layout>
 

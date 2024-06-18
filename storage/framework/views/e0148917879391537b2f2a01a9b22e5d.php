@@ -20,8 +20,7 @@
             padding: 20px;
             margin-right: -10;
             padding-right: 1px;
-            padding-left: 7px;3
-            
+            padding-left: 7px;
         }
         .sidebar h1 {
             font-size: 24px;
@@ -81,13 +80,16 @@
 <body>
     <div class="sidebar">
         <h1>Asia Pacific College</h1>
+        <a href="/admin/dashboard">Dashboard</a>
         <a href="#">Visitor</a>
         <a href="#">Events</a>
     </div>
     <div class="main-content">
         <h2>Visitor Log</h2>
-        <div class="search-box">
-            <input type="text" id="search" placeholder="Search...">
+            <div class="search-box">
+                <input type="text" id="search" placeholder="Search...">
+                <a href="<?php echo e(route('download.csv')); ?>" class="btn btn-primary" style="margin-left: 20px;">Download CSV</a>
+            </div>
         </div>
         <div class="table-container">
             <table>
@@ -95,42 +97,32 @@
                     <tr>
                         <td>Visitor ID</td>
                         <td>Visitor Name</td>
+                        <td>Phone Number</td>
                         <td>Department</td>
                         <td>Purpose</td>
                         <td>Purpose Status</td>
                         <td>Time In</td>
                         <td>Logout Time</td>
-                        <td>Action</td>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($users as $user)
-                        @foreach ($user->purposes as $purpose)
+                    <?php $__empty_1 = true; $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        <?php $__currentLoopData = $user->purposes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $purpose): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <td>{{$user->id}}</td>
-                                <td>{{$user->first_name}} {{$user->last_name}}</td>
-                                <td>{{$purpose->purpose}}</td>
-                                <td>{{$purpose->name}}</td>
-                                <td>{{$purpose->pivot->status != 'On Going' ? 'Done (' . $purpose->pivot->finished_at . ')' : 'On Going'}}</td>
-                                <td>{{$user->created_at}}</td>
-                                <td>{{$user->logout_time}}</td>
+                                <td><?php echo e($user->id); ?></td>
+                                <td><?php echo e($user->first_name); ?> <?php echo e($user->last_name); ?></td>
+                                <td><?php echo e($user->phone_number); ?></td>
+                                <td><?php echo e($purpose->purpose); ?></td>
+                                <td><?php echo e($purpose->name); ?></td>
+                                <td><?php echo e($purpose->pivot->status != 'On Going' ? 'Done (' . $purpose->pivot->finished_at . ')' : 'On Going'); ?></td>
+                                <td><?php echo e($user->created_at); ?></td>
+                                <td><?php echo e($user->logout_time); ?></td>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         
-                                @if ($loop->last)
-                                    <td>
-                                        @if (!$user->logout_time)
-                                            <a href="{{route('logout.user', $user->id)}}" class="logout-btn">Logout</a>
-                                        @endif
-                                    </td>
-                                @else
-                                    <td></td>
-                                @endif
-                            </tr>
-                        @endforeach
-                    @empty
-                        
-                    @endforelse
+                    <?php endif; ?>
                 </tbody>
             </table>
         </body>
         </html>
-        
+        <?php /**PATH D:\wamp\www\testproject\resources\views/admin/dashboardList.blade.php ENDPATH**/ ?>

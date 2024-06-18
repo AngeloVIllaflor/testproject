@@ -10,11 +10,13 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mail\StaffEmailNotification;
+use App\Models\Visitor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\DB;
 
 class RegisteredUserController extends Controller
 {
@@ -38,7 +40,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-
+        DB::beginTransaction();
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -51,7 +53,7 @@ class RegisteredUserController extends Controller
             'email' => 'string|lowercase|email'
         ]);
 
-        $user = User::create([
+        $visitor = Visitor::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'phone_number' => $request->phone_number,
@@ -61,20 +63,22 @@ class RegisteredUserController extends Controller
         ]);
 
         $purposes = $request->input('purposes', []);
-        $user->purposes()->syncWithPivotValues($request->input('purposes', []), [
+        $visitor->purposes()->syncWithPivotValues($request->input('purposes', []), [
             'status' => 'On Going'
         ]);
 
-        logger()->info('emails', $user->purposes->pluck('email')->toArray());
-        event(new Registered($user));
+        logger()->info('emails', $visitor->purposes->pluck('email')->toArray());
+        event(new Registered($visitor));
 
         logger()->info('purposes', [$purposes]);
-        Auth::login($user);
 
         // Send welcome email
-        foreach ($user->purposes as $purpose) {
-            Mail::to($purpose->email)->send(new StaffEmailNotification($user, $purpose->name, $purpose->id));
+        foreach ($visitor->purposes as $purpose) {
+            Mail::to($purpose->email)->send(new StaffEmailNotification($visitor, $purpose->name, $purpose->id));
+            sleep(2);
         }
+
+        DB::commit();
 
         return redirect(route('dashboard', absolute: false));
     }
