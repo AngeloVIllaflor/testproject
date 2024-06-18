@@ -220,9 +220,9 @@ class AdminController extends Controller
                     'first_name', 
                     'last_name', 
                     'phone_number', 
-                    'purposes.name', 
-                    'purposes.purpose', 
-                    'purposes.pivot.status', 
+                    'purpose_name', 
+                    'purpose_purpose', 
+                    'purpose_status', 
                     'created_at', 
                     'logout_time'
                 ]

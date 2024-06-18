@@ -3,8 +3,9 @@
 @section('content')
     <div class="page-heading">
         <h1><i class="fa fa-briefcase"></i> Visitors</h1>
+        <a href="{{ route('admin.download') }}" type="submit" class="btn btn-success" style= "margin-left: 10px; margin-top: 5px" >Download CSV</a>
     </div>
-    
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12" style="margin-bottom: 20px;">
