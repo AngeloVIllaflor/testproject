@@ -95,6 +95,7 @@
             <p>Please take a moment to sign in or out below</p>
             <div class="button-container">
                 <button class="button-style" data-bs-toggle="modal" data-bs-target="#privacyModal">GET STARTED</button>
+                <button class="button-style" data-bs-toggle="modal" data-bs-target="#privacyModal">Self-Logout</button>
             </div>
         </div>
     </div>
