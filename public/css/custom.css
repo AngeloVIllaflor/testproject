@@ -1,0 +1,27 @@
+.navbar-brand,
+.navbar-default .navbar-brand,
+body.topnav-collapsed .navbar-default .navbar-brand,
+body.topnav-collapsed .navbar-brand {
+    background: url("../logo2.png") !important;
+    background-repeat: no-repeat !important;
+    background-size: 60% 100% !important;
+}
+
+.login-logo > img,
+.login-link {
+    width: 100%;
+}
+
+#example > tbody > tr > td {
+    vertical-align: middle;
+}
+
+#submission_processing {
+    padding-left: 20px !important;
+}
+
+@media only screen and (max-width: 802px) {
+    body.topnav-collapsed .navbar-brand {
+        background: none !important;
+    }
+}
