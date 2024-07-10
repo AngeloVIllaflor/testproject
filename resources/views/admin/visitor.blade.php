@@ -26,8 +26,8 @@
                                         <th>Visitor ID</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
-                                        <th>Department</th>
                                         <th>Purpose</th>
+                                        <th>Department  </th>
                                         <th>Purpose Status</th>
                                         <th>Finished At</th>
                                         <th>Time In</th>
@@ -60,8 +60,8 @@
                     { data: 'purpose', name: 'name' },
                     { data: 'status', name: 'status' },
                     { data: 'finished_at', name: 'finished_at', render: function (data, type, row) {
-                        if (row.purpose_finished_at) {
-                            return moment(row.purpose_finished_at).format('MM/DD/YYYY hh:mm A');
+                        if (row.finished_at) {
+                            return moment(row.finished_at).format('MM/DD/YYYY hh:mm A');
                         }
                         return '';
                     }},
