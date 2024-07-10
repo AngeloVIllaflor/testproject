@@ -84,9 +84,9 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="qr-section">
+        <div class="qr-section d-none d-sm-flex">
             <img src="{{ asset('mobileQR.png') }}" alt="Mobile QR" class="img-fluid mobile-qr">
-            <p class="touchless-check-in">TOUCHLESS CHECK-IN<br>Use your smartphone to scan QR code</p>
+            <p class="touchless-check-in text-sm-left text-center">TOUCHLESS CHECK-IN<br>Use your smartphone to scan QR code</p>
             <img src="{{ asset('qr2.png') }}" alt="QR Code" class="img-fluid">
         </div>
         <div class="welcome-section">
