@@ -95,7 +95,7 @@
             <p>Please take a moment to sign in or out below</p>
             <div class="button-container">
                 <button class="button-style" data-bs-toggle="modal" data-bs-target="#privacyModal">GET STARTED</button>
-                <a href="{{ url('/logout-form') }}" class="button-style">Self-Logout</a>
+                <a href="{{ url('/logout-form') }}" class="button-style">SELF-LOGOUT</a>
             </div>
         </div>
     </div>
